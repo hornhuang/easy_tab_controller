@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'tab_item_builder.dart';
+import 'tab_location.dart';
 
 class TabItem extends StatefulWidget {
   String title;
@@ -9,8 +10,17 @@ class TabItem extends StatefulWidget {
   GestureTapCallback? ontap;
   int? flex;
   int index;
+  ItemOrientation orientation;
 
-  TabItem({this.title = "undefind", Key? key, this.icon, this.isSelected = false, this.ontap, this.flex = 1, this.index = 0}) : super(key: key);
+  TabItem({
+    this.title = "undefind",
+    Key? key, this.icon,
+    this.isSelected = false,
+    this.ontap,
+    this.flex = 1,
+    this.index = 0,
+    this.orientation = ItemOrientation.horizontal
+  }) : super(key: key);
 
   static TabItem builder(TabItemBuilder itemBuilder, {Key? tabKey}) {
     TabItem item = TabItem(key: itemBuilder.key ?? tabKey ?? UniqueKey(),);
@@ -34,17 +44,45 @@ class TabItemState extends State<TabItem> {
     });
   }
 
+  List<Widget> _configItems() {
+    double iconWidth = widget.isSelected ? 18 : 16;
+    return [
+      Container(
+        width: iconWidth,
+        height: iconWidth,
+        child: widget.icon,
+      ),
+      Text(
+        widget.title,
+        style: TextStyle(
+            fontSize: widget.isSelected ? 18 : 16,
+            fontWeight: widget.isSelected ? FontWeight.bold : FontWeight.normal
+        ),
+      ),
+    ];
+  }
+
+  Widget _buildHorizontalItem() {
+    return Row(
+      children: [
+        ..._configItems()
+      ],
+    );
+  }
+
+  Widget _buildVerticalItem() {
+    return Column(
+      children: [
+        ..._configItems()
+      ],
+    );
+  }
+
   Widget _buildContent() {
     return Container(
       padding: EdgeInsets.all(8),
       child: Center(
-        child: Text(
-          widget.title,
-          style: TextStyle(
-              fontSize: widget.isSelected ? 20 : 16,
-              fontWeight: widget.isSelected ? FontWeight.bold : FontWeight.normal
-          ),
-        ),
+        child: widget.orientation == ItemOrientation.horizontal ? _buildHorizontalItem() : _buildVerticalItem(),
       ),
     );
   }

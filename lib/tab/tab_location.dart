@@ -5,3 +5,8 @@ enum WebTabLocation {
   left,
   right,
 }
+
+enum ItemOrientation {
+  vertical,
+  horizontal
+}
