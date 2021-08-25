@@ -47,11 +47,8 @@ class TabItemState extends State<TabItem> {
   List<Widget> _configItems() {
     double iconWidth = widget.isSelected ? 18 : 16;
     return [
-      Container(
-        width: iconWidth,
-        height: iconWidth,
-        child: widget.icon,
-      ),
+      widget.icon == null ? Container() : Icon(widget.icon?.icon, size: iconWidth,),
+      SizedBox(width: 8, height: 8,),
       Text(
         widget.title,
         style: TextStyle(
@@ -64,6 +61,8 @@ class TabItemState extends State<TabItem> {
 
   Widget _buildHorizontalItem() {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ..._configItems()
       ],
@@ -72,6 +71,8 @@ class TabItemState extends State<TabItem> {
 
   Widget _buildVerticalItem() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ..._configItems()
       ],
