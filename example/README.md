@@ -1,6 +1,6 @@
-# example
+# easy_tab_controller_example
 
-example for tab controller.
+Demonstrates how to use the easy_tab_controller plugin.
 
 ## Getting Started
 
