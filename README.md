@@ -52,6 +52,12 @@ You can see more information in example
     );
 ```
 
+## Preview
+
+Welcome to my person website: [hornhuang.github.io](https://hornhuang.github.io/#/?pg=trend&) you can see it when your browser become narrow ～
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a3915dfa5e84865be81000645f9efd3~tplv-k3u1fbpfcp-watermark.image)
+
 # MIT License
 
 Copyright (c) 2021 hornhuang
