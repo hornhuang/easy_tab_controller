@@ -1,6 +1,6 @@
 # easy_tab_controller
 
-A new flutter plugin project.
+A user-friendly TabBarController widget for flutter developer.
 
 ## Getting Started
 

@@ -1,7 +1,7 @@
 name: easy_tab_controller
 description: a user-friendly TabBarController widget for flutter developer.
 version: 0.0.1
-homepage: 
+homepage: https://github.com/hornhuang/easy_tab_controller
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
