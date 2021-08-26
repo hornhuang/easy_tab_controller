@@ -12,7 +12,8 @@ class EasyTabController extends StatefulWidget {
 
   WebTabLocation location;
   Color color;
-  Image? background;
+  Widget? background;
+  Widget? bodyBackground;
   AppBar? appBar;
 
   EasyTabController({
@@ -22,7 +23,9 @@ class EasyTabController extends StatefulWidget {
     this.location = WebTabLocation.top,
     this.color = Colors.white,
     this.background,
-    this.appBar}) : super(key: key);
+    this.bodyBackground,
+    this.appBar,
+  }) : super(key: key);
 
   @override
   _EasyTabControllerState createState() => _EasyTabControllerState();
@@ -98,8 +101,11 @@ class _EasyTabControllerState extends State<EasyTabController> {
   }
 
   Widget _buildBody() {
-    return (widget.location == WebTabLocation.top
-        || widget.location == WebTabLocation.bottom) ?
+    return Stack(
+      children: [
+        widget.bodyBackground ?? Container(),
+        (widget.location == WebTabLocation.top
+            || widget.location == WebTabLocation.bottom) ?
         Column(
           children: [
             ..._configBody()
@@ -109,7 +115,9 @@ class _EasyTabControllerState extends State<EasyTabController> {
           children: [
             ..._configBody()
           ],
-        );
+        )
+      ],
+    );
   }
 
   @override
@@ -120,14 +128,14 @@ class _EasyTabControllerState extends State<EasyTabController> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        widget.background ?? Container(),
-        Scaffold(
-          appBar: widget.appBar,
-          body: _buildBody(),
-        )
-      ],
+    return Scaffold (
+      appBar: widget.appBar,
+      body: Stack (
+        children: [
+          widget.background ?? Container(),
+          _buildBody(),
+        ]
+      ),
     );
   }
 }

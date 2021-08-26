@@ -46,8 +46,10 @@ You can see more information in example
       body:[
         Center(
           child: Text(""),
+        ),
+        Center(
           child: Text(""),
-        )
+        ),
       ],
     );
 ```
@@ -64,10 +66,12 @@ Here are changes for every version.
 
 ### 1.0.0
 - Page display and switch.
-- direction between tabs and pages.
+- Direction between tabs and pages.
 
 ### 1.0.1
-- 
+- Perfect example code.
+- Add placeholder to page.
+- Expose text textStyle interface for tabs.
 
 # MIT License
 
