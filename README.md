@@ -17,6 +17,41 @@ The plugin project was generated without specifying the `--platforms` flag, no p
 To add platforms, run `flutter create -t plugin --platforms <platforms> .` under the same
 directory. You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
 
+## Installing
+
+This will add a line like this to your package's pubspec.yaml (and run an implicit dart pub get):
+
+```
+dependencies:
+  easy_tab_controller: ^1.0.1
+```
+
+## Using
+
+You can see more information in example
+
+```
+    EasyTabController(
+      location: WebTabLocation.left,
+      tabs: [
+        TabItemBuilder(
+          icon: Icon(Icons.directions_car),
+          title: "Android",
+        ),
+        TabItemBuilder(
+          icon: Icon(Icons.directions_bike),
+          title: "iOS",
+        ),
+      ],
+      body:[
+        Center(
+          child: Text(""),
+          child: Text(""),
+        )
+      ],
+    );
+```
+
 # MIT License
 
 Copyright (c) 2021 hornhuang
