@@ -56,7 +56,18 @@ You can see more information in example
 
 Welcome to my person website: [hornhuang.github.io](https://hornhuang.github.io/#/?pg=trend&) you can see it when your browser become narrow ～
 
-![企业微信截图_0a8d1d08-84b5-4d00-a8a8-7f908e6b5aac.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/81cc5a302ad54ccf8ae2fbd1e7ca6187~tplv-k3u1fbpfcp-watermark.image)
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/81cc5a302ad54ccf8ae2fbd1e7ca6187~tplv-k3u1fbpfcp-watermark.image)
+
+# Version
+
+Here are changes for every version.
+
+### 1.0.0
+- Page display and switch.
+- direction between tabs and pages.
+
+### 1.0.1
+- 
 
 # MIT License
 
