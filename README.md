@@ -77,11 +77,11 @@ Welcome to my person website: [hornhuang.github.io](https://hornhuang.github.io/
 
 Here are changes for every version.
 
-### 1.0.0
+### [1.0.1](https://github.com/hornhuang/easy_tab_controller/releases/tag/1.0.1)
 - Page display and switch.
 - Direction between tabs and pages.
 
-### 1.0.1
+### [1.0.2](https://github.com/hornhuang/easy_tab_controller/releases/tag/1.0.2)
 - Perfect example code.
 - Add placeholder to page.
 - Users can customize the tab style.
