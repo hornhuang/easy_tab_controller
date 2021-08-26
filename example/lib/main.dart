@@ -91,10 +91,22 @@ class _TabControllerPageState extends State<TabControllerPage> {
     );
   }
 
+  TabStyle get miniTabStyle => TabStyle(
+    selected: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+    ),
+    unSelected: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w800,
+    )
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: EasyTabController(
+        style: miniTabStyle,
         background: _buildBackground(),
         bodyBackground: _buildBodyBackground(),
         location: WebTabLocation.top,

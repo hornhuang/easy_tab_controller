@@ -1,5 +1,6 @@
 import 'dart:html';
 
+import 'package:easy_tab_controller/src/style/tab_style.dart';
 import 'package:flutter/material.dart';
 
 import 'tab/tab_item.dart';
@@ -12,6 +13,7 @@ class EasyTabController extends StatefulWidget {
 
   WebTabLocation location;
   Color color;
+  TabStyle? style;
   Widget? background;
   Widget? bodyBackground;
   AppBar? appBar;
@@ -22,6 +24,7 @@ class EasyTabController extends StatefulWidget {
     this.body = const <Widget>[],
     this.location = WebTabLocation.top,
     this.color = Colors.white,
+    this.style,
     this.background,
     this.bodyBackground,
     this.appBar,
@@ -47,7 +50,7 @@ class _EasyTabControllerState extends State<EasyTabController> {
         .forEach((index, element) {
           GlobalKey<TabItemState> key = GlobalKey();
           keys.add(key);
-          TabItem tab = TabItem.builder(element, tabKey: key);
+          TabItem tab = TabItem.builder(element, widget.style, tabKey: key);
           tab.index = index;
           tab.ontap = () {
             element.ontap?.call();

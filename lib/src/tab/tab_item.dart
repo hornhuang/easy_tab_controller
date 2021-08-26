@@ -1,3 +1,4 @@
+import 'package:easy_tab_controller/src/style/tab_style.dart';
 import 'package:flutter/material.dart';
 
 import 'tab_item_builder.dart';
@@ -11,6 +12,7 @@ class TabItem extends StatefulWidget {
   int? flex;
   int index;
   ItemOrientation orientation;
+  TabStyle style;
 
   TabItem({
     this.title = "undefind",
@@ -19,16 +21,18 @@ class TabItem extends StatefulWidget {
     this.ontap,
     this.flex = 1,
     this.index = 0,
-    this.orientation = ItemOrientation.horizontal
+    this.orientation = ItemOrientation.horizontal,
+    this.style = const TabStyle()
   }) : super(key: key);
 
-  static TabItem builder(TabItemBuilder itemBuilder, {Key? tabKey}) {
+  static TabItem builder(TabItemBuilder itemBuilder, TabStyle? style, {Key? tabKey,}) {
     TabItem item = TabItem(key: itemBuilder.key ?? tabKey ?? UniqueKey(),);
     item.title = itemBuilder.title;
     item.icon = itemBuilder.icon;
     item.isSelected = itemBuilder.isSelected;
     item.ontap = itemBuilder.ontap;
     item.flex = itemBuilder.flex;
+    if (style != null) item.style = style;
     return item;
   }
 

@@ -71,7 +71,7 @@ Here are changes for every version.
 ### 1.0.1
 - Perfect example code.
 - Add placeholder to page.
-- Expose text textStyle interface for tabs.
+- Users can customize the tab style.
 
 # MIT License
 
