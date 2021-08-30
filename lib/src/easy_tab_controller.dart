@@ -1,32 +1,35 @@
-import 'dart:html';
-
 import 'package:easy_tab_controller/src/style/tab_style.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import 'common/logic/main_logic.dart';
+import 'common/state/main_state.dart';
 import 'tab/tab_item.dart';
 import 'tab/tab_item_builder.dart';
 import 'tab/tab_location.dart';
 
 class EasyTabController extends StatefulWidget {
   List<TabItemBuilder> tabs;
-  List<Widget> body;
+  List<Widget> pages;
 
+  PageController? pageController;
   WebTabLocation location;
   Color color;
   TabStyle? style;
   Widget? background;
-  Widget? bodyBackground;
+  Widget? pageBackground;
   AppBar? appBar;
 
   EasyTabController({
     Key? key,
     this.tabs = const <TabItemBuilder>[],
-    this.body = const <Widget>[],
+    this.pages = const <Widget>[],
+    this.pageController,
     this.location = WebTabLocation.top,
     this.color = Colors.white,
     this.style,
     this.background,
-    this.bodyBackground,
+    this.pageBackground,
     this.appBar,
   }) : super(key: key);
 
@@ -35,9 +38,11 @@ class EasyTabController extends StatefulWidget {
 }
 
 class _EasyTabControllerState extends State<EasyTabController> {
-  List<TabItem> tabItems = [];
+  final MainLogic logic = Get.put(MainLogic());
+  final MainState state = Get.find<MainLogic>().state;
+
   List<GlobalKey<TabItemState>> keys = [];
-  TabItem? selectedItem;
+//  TabItem? selectedItem;
   GlobalKey<TabItemState>? selectedKey;
   int selectedIndex = 0;
 
@@ -45,6 +50,7 @@ class _EasyTabControllerState extends State<EasyTabController> {
     if (widget.tabs.length < 1) {
       return;
     }
+    List<TabItem> items = [];
     widget.tabs
         .asMap()
         .forEach((index, element) {
@@ -58,15 +64,17 @@ class _EasyTabControllerState extends State<EasyTabController> {
               selectedKey?.currentState?.onStateChanged(false);
               selectedIndex = index;
               tab.isSelected = true;
-              selectedItem = tab;
+//              selectedItem = tab;
               selectedKey = keys[index];
             });
           };
-          tabItems.add(tab);
+          print("${state.itemList.length}--asdasdasdas");
+          items.add(tab);
     });
+    logic.initItems(items);
     selectedKey = keys[0];
-    selectedItem = tabItems[0];
-    selectedItem?.isSelected = true;
+//    selectedItem = tabItems[0];
+//    selectedItem?.isSelected = true;
   }
 
   Widget _buildTabs() {
@@ -74,59 +82,76 @@ class _EasyTabControllerState extends State<EasyTabController> {
         || widget.location == WebTabLocation.bottom) ?
     Row(
       children: [
-        ...tabItems
+        ...state.itemList
       ],
     ) : Column(
       children: [
-        ...tabItems
+        ...state.itemList
       ],
     );
   }
 
   Widget _buildContent() {
-    Widget body = Container();
-    if (selectedIndex > widget.body.length - 1 || widget.body.length == 0) {
-      body = Center(
+    Widget page = Container();
+    if (selectedIndex > state.pageList.length - 1 || state.pageList.length == 0) {
+      page = Center(
         child: Text(
           "null content"
         ),
       );
     } else {
-      body = widget.body[selectedIndex];
+      page = state.pageList[state.selectedIndex];
     }
-    return body;
+    return page;
   }
 
-  List<Widget> _configBody() {
+  List<Widget> _configPage() {
     return (widget.location == WebTabLocation.top
         || widget.location == WebTabLocation.left) ?
     [_buildTabs(), _buildContent()] : [ _buildContent(), _buildTabs()];
   }
 
-  Widget _buildBody() {
-    return Stack(
-      children: [
-        widget.bodyBackground ?? Container(),
-        (widget.location == WebTabLocation.top
-            || widget.location == WebTabLocation.bottom) ?
-        Column(
-          children: [
-            ..._configBody()
-          ],
-        ) :
-        Row(
-          children: [
-            ..._configBody()
-          ],
-        )
-      ],
+  Widget _buildPage() {
+    return Expanded(
+        child: PageView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: state.pageList.length,
+          itemBuilder: (context, index) => Stack(
+            children: [
+              widget.pageBackground ?? Container(),
+              (widget.location == WebTabLocation.top
+                  || widget.location == WebTabLocation.bottom) ?
+              Column(
+                children: [
+                  ..._configPage()
+                ],
+              ) :
+              Row(
+                children: [
+                  ..._configPage()
+                ],
+              )
+            ],
+          ),
+          controller: state.pageController,
+        ),
     );
+  }
+
+  _updateState() {
+    logic.initPages(widget.pages);
+    state.selectedIndex = 0;
+    state.isUnfold = false;
+    state.isScale = false;
+    state.pageList = widget.pages;
+    state.pageController = widget.pageController ?? PageController();
   }
 
   @override
   void initState() {
     super.initState();
     _configItemTabs();
+    _updateState();
   }
 
   @override
@@ -136,7 +161,7 @@ class _EasyTabControllerState extends State<EasyTabController> {
       body: Stack (
         children: [
           widget.background ?? Container(),
-          _buildBody(),
+          _buildPage(),
         ]
       ),
     );
