@@ -108,10 +108,10 @@ class _TabControllerPageState extends State<TabControllerPage> {
       body: EasyTabController(
         style: miniTabStyle,
         background: _buildBackground(),
-        pageBackground: _buildBodyBackground(),
+        bodyBackground: _buildBodyBackground(),
         location: WebTabLocation.top,
         tabs: _buildTabs(),
-        pages: _buildPages(),
+        body: _buildPages(),
       ),
     );
   }
