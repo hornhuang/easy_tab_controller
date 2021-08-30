@@ -1,5 +1,10 @@
+import 'package:easy_tab_controller/easy_tab_controller.dart';
+import 'package:easy_tab_controller/src/common/views/keep_alive_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import 'common/logic/main_logic.dart';
+import 'common/state/main_state.dart';
 import 'common/style/tab_style.dart';
 import 'tab/tab_item.dart';
 import 'tab/tab_item_builder.dart';
@@ -33,13 +38,15 @@ class EasyTabController extends StatefulWidget {
 }
 
 class _EasyTabControllerState extends State<EasyTabController> {
-  List<TabItem> tabItems = [];
+  final MainLogic logic = Get.put(MainLogic());
+  final MainState state = Get.find<MainLogic>().state;
+
   List<GlobalKey<TabItemState>> keys = [];
   TabItem? selectedItem;
   GlobalKey<TabItemState>? selectedKey;
-  int selectedIndex = 0;
 
-  _configtabs() {
+  _configTabs() {
+    List<TabItem> tabItems = [];
     widget.tabs
         .asMap()
         .forEach((index, element) {
@@ -51,7 +58,7 @@ class _EasyTabControllerState extends State<EasyTabController> {
         element.ontap?.call();
         setState(() {
           selectedKey?.currentState?.onStateChanged(false);
-          selectedIndex = index;
+          logic.switchTap(index);
           tab.isSelected = true;
           selectedItem = tab;
           selectedKey = keys[index];
@@ -62,47 +69,70 @@ class _EasyTabControllerState extends State<EasyTabController> {
     selectedKey = keys[0];
     selectedItem = tabItems[0];
     selectedItem?.isSelected = true;
+    state.tabs = tabItems;
   }
 
   _configPages() {
-
+    List<KeepAlivePage> pages = [];
+    widget.pages.forEach((element) {
+      pages.add(KeepAlivePage(child: element));
+    });
+    state.pageList = pages;
   }
 
   _configState() {
     if (widget.tabs.length == 0 || widget.pages.length == 0) {
-
+      LogW("tabs and pages should > 0");
       return;
     }
-    _configtabs();
+    if (widget.tabs.length != widget.pages.length) {
+      LogW("tabs.count need == pages.counts");
+      return;
+    }
+    _configTabs();
     _configPages();
+    state.selectedIndex = 0;
+    state.isUnfold = false;
+    state.isScale = false;
+    state.pageController = PageController(
+        initialPage: 0,
+        keepPage: true,
+        viewportFraction: 1.0
+    );
   }
 
   Widget _buildTabs() {
-    return (widget.location == WebTabLocation.top
-        || widget.location == WebTabLocation.bottom) ?
-    Row(
-      children: [
-        ...tabItems
-      ],
-    ) : Column(
-      children: [
-        ...tabItems
-      ],
+    return Expanded(
+      flex: 0,
+        child: (widget.location == WebTabLocation.top
+            || widget.location == WebTabLocation.bottom) ?
+        Row(
+          children: [
+            ...state.tabs
+          ],
+        ) : Column(
+          children: [
+            ...state.tabs
+          ],
+        )
     );
   }
 
   Widget _buildContent() {
-    Widget page = Container();
-    if (selectedIndex > widget.pages.length - 1 || widget.pages.length == 0) {
-      page = Center(
-        child: Text(
-          "null content"
-        ),
-      );
-    } else {
-      page = widget.pages[selectedIndex];
-    }
-    return page;
+    return Expanded(
+        flex: 1,
+        child: PageView.builder(
+          scrollBehavior: MaterialScrollBehavior(),
+          restorationId: "easy_tab_controller.page_0x1",
+          onPageChanged: (index) {
+            logic.switchTap(index);
+          },
+          itemCount: state.pageList.length,
+//          physics: NeverScrollableScrollPhysics(),
+          controller: state.pageController,
+          itemBuilder: (context, index) => state.pageList[index],
+        )
+    );
   }
 
   List<Widget> _configPage() {
@@ -139,14 +169,14 @@ class _EasyTabControllerState extends State<EasyTabController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold (
+    return Scaffold(
       appBar: widget.appBar,
-      body: Stack (
+      body: Stack(
         children: [
           widget.background ?? Container(),
-          _buildPage(),
-        ]
-      ),
+          _buildPage()
+        ],
+      )
     );
   }
 }

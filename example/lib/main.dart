@@ -52,23 +52,17 @@ class _TabControllerPageState extends State<TabControllerPage> {
 
   List<Widget> _buildPages() {
     return [
-      Expanded(
-        child: Container(
-          alignment: Alignment.center,
-          child: Text("Android"),
-        ),
+      Container(
+        alignment: Alignment.center,
+        child: Text("Android"),
       ),
-      Expanded(
-        child: Container(
-          alignment: Alignment.center,
-          child: Text("iOS"),
-        ),
+      Container(
+        alignment: Alignment.center,
+        child: Text("iOS"),
       ),
-      Expanded(
-        child: Container(
-          alignment: Alignment.center,
-          child: Text("Flutter"),
-        ),
+      Container(
+        alignment: Alignment.center,
+        child: Text("Flutter"),
       ),
     ];
   }
@@ -83,7 +77,7 @@ class _TabControllerPageState extends State<TabControllerPage> {
     return ConstrainedBox(
       child: Image.network(
         "https://images.unsplash.com/photo-1568878801598-d0a5f489613e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1595&q=80",
-        fit: BoxFit.fitWidth,
+        fit: BoxFit.fill,
       ),
       constraints: new BoxConstraints.expand(),
     );

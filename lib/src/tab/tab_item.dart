@@ -1,5 +1,8 @@
+import 'package:easy_tab_controller/src/common/logic/main_logic.dart';
+import 'package:easy_tab_controller/src/common/state/main_state.dart';
 import 'package:easy_tab_controller/src/common/style/tab_style.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'tab_item_builder.dart';
 import 'tab_location.dart';
@@ -41,6 +44,7 @@ class TabItem extends StatefulWidget {
 }
 
 class TabItemState extends State<TabItem> {
+  final MainState state = Get.find<MainLogic>().state;
 
   onStateChanged(bool isSelected) {
     setState(() {
@@ -97,6 +101,13 @@ class TabItemState extends State<TabItem> {
       widget.ontap?.call();
       setState(() { });
     };
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.isSelected = state.selectedIndex == widget.index;
   }
 
   @override

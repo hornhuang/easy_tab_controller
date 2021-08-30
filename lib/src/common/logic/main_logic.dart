@@ -12,14 +12,14 @@ class MainLogic extends GetxController {
   }
 
   ///是否展开侧边栏
-  void addTabs(TabItem tabItem) {
+  void addTab(TabItem tabItem) {
     state.tabs.add(tabItem);
     update();
   }
 
   ///是否展开侧边栏
-  void setPages(List<KeepAlivePage> pages) {
-    state.pageList.addAll(pages);
+  void addPage(KeepAlivePage page) {
+    state.pageList.add(page);
     update();
   }
 
