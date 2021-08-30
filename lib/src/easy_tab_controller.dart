@@ -57,9 +57,9 @@ class _EasyTabControllerState extends State<EasyTabController> {
       tab.ontap = () {
         element.ontap?.call();
         setState(() {
-          selectedKey?.currentState?.onStateChanged(false);
+//          selectedKey?.currentState?.onStateChanged(false);
           logic.switchTap(index);
-          tab.isSelected = true;
+//          tab.isSelected = true;
           selectedItem = tab;
           selectedKey = keys[index];
         });
@@ -68,7 +68,7 @@ class _EasyTabControllerState extends State<EasyTabController> {
     });
     selectedKey = keys[0];
     selectedItem = tabItems[0];
-    selectedItem?.isSelected = true;
+//    selectedItem?.isSelected = true;
     state.tabs = tabItems;
   }
 

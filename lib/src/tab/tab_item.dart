@@ -10,7 +10,6 @@ import 'tab_location.dart';
 class TabItem extends StatefulWidget {
   String title;
   Icon? icon;
-  bool isSelected;
   GestureTapCallback? ontap;
   int? flex;
   int index;
@@ -20,7 +19,6 @@ class TabItem extends StatefulWidget {
   TabItem({
     this.title = "undefind",
     Key? key, this.icon,
-    this.isSelected = false,
     this.ontap,
     this.flex = 1,
     this.index = 0,
@@ -32,7 +30,6 @@ class TabItem extends StatefulWidget {
     TabItem item = TabItem(key: itemBuilder.key ?? tabKey ?? UniqueKey(),);
     item.title = itemBuilder.title;
     item.icon = itemBuilder.icon;
-    item.isSelected = itemBuilder.isSelected;
     item.ontap = itemBuilder.ontap;
     item.flex = itemBuilder.flex;
     if (style != null) item.style = style;
@@ -44,25 +41,25 @@ class TabItem extends StatefulWidget {
 }
 
 class TabItemState extends State<TabItem> {
-  final MainState state = Get.find<MainLogic>().state;
-
-  onStateChanged(bool isSelected) {
-    setState(() {
-      widget.isSelected = isSelected;
-    });
-  }
 
   List<Widget> _configItems() {
-    double iconWidth = widget.isSelected ? 18 : 16;
     return [
-      widget.icon == null ? Container() : Icon(widget.icon?.icon, size: iconWidth,),
+      GetBuilder<MainLogic>(builder: (logic) =>
+      widget.icon == null ?
+      Container() :
+      Icon(widget.icon?.icon,
+        size: logic.state.selectedIndex == widget.index ? 18 : 16,),
+      ),
       SizedBox(width: 8, height: 8,),
-      Text(
-        widget.title,
-        style: TextStyle(
-            fontSize: widget.isSelected ? 18 : 16,
-            fontWeight: widget.isSelected ? FontWeight.bold : FontWeight.normal
-        ),
+      GetBuilder<MainLogic>(builder: (logic) =>
+          Text(
+            widget.title,
+            style: TextStyle(
+                fontSize: logic.state.selectedIndex == widget.index ? 18 : 16,
+                fontWeight: logic.state.selectedIndex == widget.index ? FontWeight
+                    .bold : FontWeight.normal
+            ),
+          ),
       ),
     ];
   }
@@ -101,13 +98,6 @@ class TabItemState extends State<TabItem> {
       widget.ontap?.call();
       setState(() { });
     };
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    widget.isSelected = state.selectedIndex == widget.index;
   }
 
   @override
