@@ -16,6 +16,7 @@ class EasyTabController extends StatefulWidget {
 
   WebTabLocation location;
   Color color;
+  bool canScroll;
   TabStyle? style;
   Widget? background;
   Widget? pageBackground;
@@ -27,6 +28,7 @@ class EasyTabController extends StatefulWidget {
     this.pages = const <Widget>[],
     this.location = WebTabLocation.top,
     this.color = Colors.white,
+    this.canScroll = true,
     this.style,
     this.background,
     this.pageBackground,
@@ -128,7 +130,7 @@ class _EasyTabControllerState extends State<EasyTabController> {
             logic.switchTap(index);
           },
           itemCount: state.pageList.length,
-//          physics: NeverScrollableScrollPhysics(),
+          physics: widget.canScroll ? null : NeverScrollableScrollPhysics(),
           controller: state.pageController,
           itemBuilder: (context, index) => state.pageList[index],
         )
