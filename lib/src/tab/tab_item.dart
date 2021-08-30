@@ -1,4 +1,4 @@
-import 'package:easy_tab_controller/src/style/tab_style.dart';
+import 'package:easy_tab_controller/src/common/style/tab_style.dart';
 import 'package:flutter/material.dart';
 
 import 'tab_item_builder.dart';

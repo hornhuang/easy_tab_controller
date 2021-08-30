@@ -1,8 +1,6 @@
-import 'dart:html';
-
-import 'package:easy_tab_controller/src/style/tab_style.dart';
 import 'package:flutter/material.dart';
 
+import 'common/style/tab_style.dart';
 import 'tab/tab_item.dart';
 import 'tab/tab_item_builder.dart';
 import 'tab/tab_location.dart';

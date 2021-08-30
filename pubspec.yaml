@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # getx
+  get: ^4.3.8
 
 dev_dependencies:
   flutter_test:
