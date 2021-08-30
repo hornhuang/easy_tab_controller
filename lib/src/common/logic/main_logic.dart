@@ -1,11 +1,26 @@
+import 'package:easy_tab_controller/src/common/state/main_state.dart';
+import 'package:easy_tab_controller/src/common/views/keep_alive_page.dart';
+import 'package:easy_tab_controller/src/tab/tab_item.dart';
+import 'package:get/get.dart';
+
 class MainLogic extends GetxController {
   final state = MainState();
 
   @override
   void onInit() {
-    ///初始化应用信息
-    InitConfig.initApp(Get.context);
     super.onInit();
+  }
+
+  ///是否展开侧边栏
+  void addTabs(TabItem tabItem) {
+    state.tabs.add(tabItem);
+    update();
+  }
+
+  ///是否展开侧边栏
+  void setPages(List<KeepAlivePage> pages) {
+    state.pageList.addAll(pages);
+    update();
   }
 
   ///切换tab
@@ -25,7 +40,5 @@ class MainLogic extends GetxController {
   void onScale(bool isScale) {
     state.isScale = !state.isScale;
     update();
-
-    initWindow(scale: isScale ? 1.25 : 1.0);
   }
 }
