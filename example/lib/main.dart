@@ -74,10 +74,8 @@ class _TabControllerPageState extends State<TabControllerPage> {
   }
 
   Widget _buildBodyBackground() {
-    return Expanded(
-      child: Center(
-        child: Text("bodyBackground"),
-      ),
+    return Center(
+      child: Text("bodyBackground"),
     );
   }
 
