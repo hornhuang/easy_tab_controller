@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   # getx
   get: ^4.3.8
+  # print colorful logs
+  logger: ^1.0.0
 
 dev_dependencies:
   flutter_test:

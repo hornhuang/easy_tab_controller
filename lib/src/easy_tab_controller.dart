@@ -7,7 +7,7 @@ import 'tab/tab_location.dart';
 
 class EasyTabController extends StatefulWidget {
   List<TabItemBuilder> tabs;
-  List<Widget> page;
+  List<Widget> pages;
 
   WebTabLocation location;
   Color color;
@@ -19,7 +19,7 @@ class EasyTabController extends StatefulWidget {
   EasyTabController({
     Key? key,
     this.tabs = const <TabItemBuilder>[],
-    this.page = const <Widget>[],
+    this.pages = const <Widget>[],
     this.location = WebTabLocation.top,
     this.color = Colors.white,
     this.style,
@@ -39,32 +39,42 @@ class _EasyTabControllerState extends State<EasyTabController> {
   GlobalKey<TabItemState>? selectedKey;
   int selectedIndex = 0;
 
-  _configItemTabs() {
-    if (widget.tabs.length < 1) {
-      return;
-    }
+  _configtabs() {
     widget.tabs
         .asMap()
         .forEach((index, element) {
-          GlobalKey<TabItemState> key = GlobalKey();
-          keys.add(key);
-          TabItem tab = TabItem.builder(element, widget.style, tabKey: key);
-          tab.index = index;
-          tab.ontap = () {
-            element.ontap?.call();
-            setState(() {
-              selectedKey?.currentState?.onStateChanged(false);
-              selectedIndex = index;
-              tab.isSelected = true;
-              selectedItem = tab;
-              selectedKey = keys[index];
-            });
-          };
-          tabItems.add(tab);
+      GlobalKey<TabItemState> key = GlobalKey();
+      keys.add(key);
+      TabItem tab = TabItem.builder(element, widget.style, tabKey: key);
+      tab.index = index;
+      tab.ontap = () {
+        element.ontap?.call();
+        setState(() {
+          selectedKey?.currentState?.onStateChanged(false);
+          selectedIndex = index;
+          tab.isSelected = true;
+          selectedItem = tab;
+          selectedKey = keys[index];
+        });
+      };
+      tabItems.add(tab);
     });
     selectedKey = keys[0];
     selectedItem = tabItems[0];
     selectedItem?.isSelected = true;
+  }
+
+  _configPages() {
+
+  }
+
+  _configState() {
+    if (widget.tabs.length == 0 || widget.pages.length == 0) {
+
+      return;
+    }
+    _configtabs();
+    _configPages();
   }
 
   Widget _buildTabs() {
@@ -83,14 +93,14 @@ class _EasyTabControllerState extends State<EasyTabController> {
 
   Widget _buildContent() {
     Widget page = Container();
-    if (selectedIndex > widget.page.length - 1 || widget.page.length == 0) {
+    if (selectedIndex > widget.pages.length - 1 || widget.pages.length == 0) {
       page = Center(
         child: Text(
           "null content"
         ),
       );
     } else {
-      page = widget.page[selectedIndex];
+      page = widget.pages[selectedIndex];
     }
     return page;
   }
@@ -124,7 +134,7 @@ class _EasyTabControllerState extends State<EasyTabController> {
   @override
   void initState() {
     super.initState();
-    _configItemTabs();
+    _configState();
   }
 
   @override

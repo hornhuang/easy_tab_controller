@@ -109,7 +109,7 @@ class _TabControllerPageState extends State<TabControllerPage> {
         pageBackground: _buildPageBackground(),
         location: WebTabLocation.top,
         tabs: _buildTabs(),
-        page: _buildPages(),
+        pages: _buildPages(),
       ),
     );
   }
