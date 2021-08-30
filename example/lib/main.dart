@@ -73,9 +73,9 @@ class _TabControllerPageState extends State<TabControllerPage> {
     ];
   }
 
-  Widget _buildBodyBackground() {
+  Widget _buildPageBackground() {
     return Center(
-      child: Text("bodyBackground"),
+      child: Text("Page Background"),
     );
   }
 
@@ -106,10 +106,10 @@ class _TabControllerPageState extends State<TabControllerPage> {
       body: EasyTabController(
         style: miniTabStyle,
         background: _buildBackground(),
-        bodyBackground: _buildBodyBackground(),
+        pageBackground: _buildPageBackground(),
         location: WebTabLocation.top,
         tabs: _buildTabs(),
-        body: _buildPages(),
+        page: _buildPages(),
       ),
     );
   }

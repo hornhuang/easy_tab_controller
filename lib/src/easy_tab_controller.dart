@@ -7,24 +7,24 @@ import 'tab/tab_location.dart';
 
 class EasyTabController extends StatefulWidget {
   List<TabItemBuilder> tabs;
-  List<Widget> body;
+  List<Widget> page;
 
   WebTabLocation location;
   Color color;
   TabStyle? style;
   Widget? background;
-  Widget? bodyBackground;
+  Widget? pageBackground;
   AppBar? appBar;
 
   EasyTabController({
     Key? key,
     this.tabs = const <TabItemBuilder>[],
-    this.body = const <Widget>[],
+    this.page = const <Widget>[],
     this.location = WebTabLocation.top,
     this.color = Colors.white,
     this.style,
     this.background,
-    this.bodyBackground,
+    this.pageBackground,
     this.appBar,
   }) : super(key: key);
 
@@ -82,39 +82,39 @@ class _EasyTabControllerState extends State<EasyTabController> {
   }
 
   Widget _buildContent() {
-    Widget body = Container();
-    if (selectedIndex > widget.body.length - 1 || widget.body.length == 0) {
-      body = Center(
+    Widget page = Container();
+    if (selectedIndex > widget.page.length - 1 || widget.page.length == 0) {
+      page = Center(
         child: Text(
           "null content"
         ),
       );
     } else {
-      body = widget.body[selectedIndex];
+      page = widget.page[selectedIndex];
     }
-    return body;
+    return page;
   }
 
-  List<Widget> _configBody() {
+  List<Widget> _configPage() {
     return (widget.location == WebTabLocation.top
         || widget.location == WebTabLocation.left) ?
     [_buildTabs(), _buildContent()] : [ _buildContent(), _buildTabs()];
   }
 
-  Widget _buildBody() {
+  Widget _buildPage() {
     return Stack(
       children: [
-        widget.bodyBackground ?? Container(),
+        widget.pageBackground ?? Container(),
         (widget.location == WebTabLocation.top
             || widget.location == WebTabLocation.bottom) ?
         Column(
           children: [
-            ..._configBody()
+            ..._configPage()
           ],
         ) :
         Row(
           children: [
-            ..._configBody()
+            ..._configPage()
           ],
         )
       ],
@@ -134,7 +134,7 @@ class _EasyTabControllerState extends State<EasyTabController> {
       body: Stack (
         children: [
           widget.background ?? Container(),
-          _buildBody(),
+          _buildPage(),
         ]
       ),
     );
