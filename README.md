@@ -1,8 +1,12 @@
-# easy_tab_controller
+# <font color=#176f69>#</font> easy_tab_controller
+
+----
 
 A user-friendly TabBarController widget for flutter developer.
 
-## Getting Started
+#### <font color=#176f69>#</font> Getting Started
+
+----
 
 This project is a starting point for a Flutter
 [plug-in package](https://flutter.dev/developing-packages/),
@@ -17,7 +21,9 @@ The plugin project was generated without specifying the `--platforms` flag, no p
 To add platforms, run `flutter create -t plugin --platforms <platforms> .` under the same
 directory. You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
 
-## Installing
+#### <font color=#176f69>#</font> Installing
+
+----
 
 This will add a line like this to your package's pubspec.yaml (and run an implicit dart pub get):
 
@@ -26,7 +32,9 @@ dependencies:
   easy_tab_controller: ^1.0.1
 ```
 
-## Using
+#### <font color=#176f69>#</font> Using
+
+----
 
 You can see more information in example
 
@@ -54,7 +62,9 @@ You can see more information in example
     );
 ```
 
-## Preview
+#### <font color=#176f69>#</font> Preview
+
+----
 
 Welcome to my person website: [hornhuang.github.io](https://hornhuang.github.io/#/?pg=trend&) you can see it when your browser become narrow ～
 
@@ -73,23 +83,29 @@ Welcome to my person website: [hornhuang.github.io](https://hornhuang.github.io/
     </tr>
 </table>
 
-# Version
+# <font color=#176f69>#</font> Version
+
+----
 
 Here are changes for every version.
 
-### [1.0.1](https://github.com/hornhuang/easy_tab_controller/releases/tag/1.0.1)
+#### [1.0.1](https://github.com/hornhuang/easy_tab_controller/releases/tag/1.0.1)
+the first version prepare basic functions for you, it not only support tabs click-switch, but also support all direction for tabs shown.
 - Page display and switch.
 - Direction between tabs and pages.
 
-### [1.0.2](https://github.com/hornhuang/easy_tab_controller/releases/tag/1.0.2)
+#### [1.0.2](https://github.com/hornhuang/easy_tab_controller/releases/tag/1.0.2)
+Good news! i add the example code for you. this version has been support to add placeholder for page (as a background). Even better, you can customize the style of your own tags. 
 - Perfect example code.
 - Add placeholder to page.
 - Users can customize the tab style.
 
-### [1.0.3](https://github.com/hornhuang/easy_tab_controller/releases/tag/1.0.3)
+#### [1.0.3](https://github.com/hornhuang/easy_tab_controller/releases/tag/1.0.3)
 - use get to reconstruction this project.
 
-# MIT License
+# <font color=#176f69>#</font> MIT License
+
+----
 
 Copyright (c) 2021 hornhuang
 
