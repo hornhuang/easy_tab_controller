@@ -1,8 +1,8 @@
-# <font color=#176f69>#</font> easy_tab_controller
+# easy_tab_controller
 
 A user-friendly TabBarController widget for flutter developer.
 
-## <font color=#176f69>#</font> Getting Started
+## Getting Started
 
 This project is a starting point for a Flutter
 [plug-in package](https://flutter.dev/developing-packages/),
@@ -17,7 +17,7 @@ The plugin project was generated without specifying the `--platforms` flag, no p
 To add platforms, run `flutter create -t plugin --platforms <platforms> .` under the same
 directory. You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
 
-## <font color=#176f69>#</font> Installing
+## Installing
 
 This will add a line like this to your package's pubspec.yaml (and run an implicit dart pub get):
 
@@ -26,7 +26,7 @@ dependencies:
   easy_tab_controller: ^1.0.1
 ```
 
-## <font color=#176f69>#</font> Using
+## Using
 
 You can see more information in example
 
@@ -54,7 +54,7 @@ You can see more information in example
     );
 ```
 
-## <font color=#176f69>#</font> Preview
+## Preview
 
 Welcome to my person website: [hornhuang.github.io](https://hornhuang.github.io/#/?pg=trend&) you can see it when your browser become narrow ～
 
@@ -73,7 +73,7 @@ Welcome to my person website: [hornhuang.github.io](https://hornhuang.github.io/
     </tr>
 </table>
 
-# <font color=#176f69>#</font> Version
+# Version
 
 Here are changes for every version.
 
@@ -91,7 +91,7 @@ Good news! i add the example code for you. this version has been support to add 
 ## [1.0.3](https://github.com/hornhuang/easy_tab_controller/releases/tag/1.0.3)
 - use get to reconstruction this project.
 
-# <font color=#176f69>#</font> MIT License
+# MIT License
 
 Copyright (c) 2021 hornhuang
 
