@@ -1,9 +1,18 @@
 .DS_Store
-.dart_tool/
+.dart_tool/*
 
 .packages
-.pub/
+.pub/*
 
-build/
-.idea/
-.idea/workspace.xml
+build/*
+
+# IntelliJ
+*.iml
+.idea/*
+#.idea/workspace.xml
+#.idea/tasks.xml
+#.idea/gradle.xml
+#.idea/assetWizardSettings.xml
+#.idea/dictionaries
+#.idea/libraries
+#.idea/caches
