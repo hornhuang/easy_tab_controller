@@ -86,6 +86,9 @@ Here are changes for every version.
 - Add placeholder to page.
 - Users can customize the tab style.
 
+### [1.0.3](https://github.com/hornhuang/easy_tab_controller/releases/tag/1.0.3)
+- use get to reconstruction this project.
+
 # MIT License
 
 Copyright (c) 2021 hornhuang
