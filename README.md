@@ -2,6 +2,8 @@
 
 A user-friendly TabBarController widget for flutter developer.
 
+![](https://github.com/hornhuang/PictureRepository/blob/master/easy_tab_controller/code-snapshot.png)
+
 ## <font color=#176f69>#</font> Getting Started
 
 This project is a starting point for a Flutter
